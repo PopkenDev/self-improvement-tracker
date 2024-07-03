@@ -31,3 +31,5 @@ This application is perfect for anyone looking to make positive changes in their
 ## Status
 
 The project is currently in development. We welcome contributions and feedback to help improve the platform further.
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/popkendev)
