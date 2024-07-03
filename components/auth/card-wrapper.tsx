@@ -20,15 +20,20 @@ const CardWrapper = ({
   return (
     <div>
       <header className="text-center">
-        <h1 className="text-3xl font-semibold text-white mb-1">{label}</h1>
+        <h1 className="mb-1 text-3xl font-semibold text-white">{label}</h1>
         <p className="text-white">{subText}</p>
       </header>
       <div>{children}</div>
-      <footer className="text-center w-full">
-        <Link href={backButtonHref} className="text-center text-white text-sm">
+      <footer className="w-full text-center">
+        <p className="text-center text-sm text-white">
           {backButtonLabel}{" "}
-          <span className="underline underline-offset-2">{backButtonLink}</span>
-        </Link>
+          <Link
+            href={backButtonHref}
+            className="underline underline-offset-2 transition hover:opacity-80"
+          >
+            {backButtonLink}
+          </Link>
+        </p>
       </footer>
     </div>
   );
