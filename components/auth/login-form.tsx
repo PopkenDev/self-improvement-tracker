@@ -10,15 +10,13 @@ export const LoginForm = () => {
   return (
     <form className="mt-8 flex w-[380px] flex-col space-y-6 p-8">
       <div className="relative flex flex-col gap-y-2">
-        <label htmlFor="" className="text-sm font-semibold text-[#efefef]">
-          Email
-        </label>
         <FormLabel name="email">Email</FormLabel>
         <div className="relative">
           <Input
             onChange={() => {}}
             required={true}
             type="email"
+            name="email"
             placeholder="john.doe@example.com"
             variant="authentication"
           />
@@ -29,12 +27,11 @@ export const LoginForm = () => {
         </div>
       </div>
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="" className="text-sm font-semibold text-[#efefef]">
-          Password
-        </label>
+        <FormLabel name="password">Password</FormLabel>
         <div className="relative">
           <Input
             type="password"
+            name="password"
             onChange={() => {}}
             placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"
             variant="authentication"

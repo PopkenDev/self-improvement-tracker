@@ -13,6 +13,7 @@ interface InputProps {
   onChange: () => void;
   variant: "authentication" | "default";
   className?: string;
+  name: string;
 }
 
 export const Input = ({
@@ -22,12 +23,14 @@ export const Input = ({
   onChange,
   variant,
   className,
+  name,
 }: InputProps) => {
   if (!variant) return null;
   return (
     <input
       onChange={onChange}
       type={type}
+      name={name}
       className={`px-4 py-2.5 placeholder:text-white/80 ${inputVariants[variant]} ${className}`}
       placeholder={placeholder}
       required={required}
