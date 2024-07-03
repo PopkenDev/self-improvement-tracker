@@ -8,10 +8,10 @@ const inputVariants = {
 interface InputProps {
   type: "text" | "email" | "password" | "number" | "tel" | "url" | "search";
   placeholder: string;
-  required: boolean;
+  required?: boolean;
   disabled?: boolean;
   onChange: () => void;
-  variant?: "authentication" | "default";
+  variant: "authentication" | "default";
   className?: string;
 }
 
@@ -28,8 +28,7 @@ export const Input = ({
     <input
       onChange={onChange}
       type={type}
-      className={`placeholder:text-white/80 px-4 py-2.5 ${inputVariants[variant]} 
-      ${className}`}
+      className={`px-4 py-2.5 placeholder:text-white/80 ${inputVariants[variant]} ${className}`}
       placeholder={placeholder}
       required={required}
     />

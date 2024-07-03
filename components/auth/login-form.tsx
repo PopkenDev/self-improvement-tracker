@@ -30,12 +30,12 @@ export const LoginForm = () => {
         <label htmlFor="" className="text-sm font-semibold text-[#efefef]">
           Password
         </label>
-        <div className="relative w-full">
-          <input
+        <div className="relative">
+          <Input
             type="password"
+            onChange={() => {}}
             placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"
-            className="w-full rounded-md bg-gradient-to-r from-[#02150f] from-5% to-emerald-800 to-55% px-4 py-2.5 pl-12 text-white outline-none placeholder:text-white/80"
-            required
+            variant="authentication"
           />
           <FontAwesomeIcon
             icon={faLock}
