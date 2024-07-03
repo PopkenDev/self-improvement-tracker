@@ -1,5 +1,7 @@
 "use client";
 
+import * as z from "zod";
+import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,16 +9,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormLabel } from "@/components/ui/form-label";
 import { FormItem } from "@/components/ui/form-item";
+import { RegisterSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const RegisterForm = () => {
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    },
+  });
+
+  const onSubmit = () => {
+    console.log("LOG:", form.getValues());
+  };
   return (
-    <form className="mt-8 flex w-[380px] flex-col space-y-6 p-8">
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="mt-8 flex w-[380px] flex-col space-y-6 p-8"
+    >
       <FormItem>
         <FormLabel name="name">Name</FormLabel>
         <div className="relative">
           <Input
             onChange={() => {}}
-            required={true}
             type="text"
             name="name"
             placeholder="John Doe"
@@ -33,7 +52,6 @@ export const RegisterForm = () => {
         <div className="relative">
           <Input
             onChange={() => {}}
-            required={true}
             type="email"
             name="email"
             placeholder="john.doe@example.com"
@@ -77,8 +95,8 @@ export const RegisterForm = () => {
           />
         </div>
       </FormItem>
-      <Button type="button" className="bg-emerald-600 text-white">
-        Login
+      <Button type="submit" className="bg-emerald-600 text-white">
+        Register
       </Button>
     </form>
   );

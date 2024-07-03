@@ -18,7 +18,7 @@ interface InputProps {
 
 export const Input = ({
   type,
-  required = true,
+  required = false,
   placeholder,
   onChange,
   variant,
