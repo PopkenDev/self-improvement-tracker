@@ -4,6 +4,7 @@ import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { FormLabel } from "../ui/form-label";
 
 export const LoginForm = () => {
   return (
@@ -12,6 +13,7 @@ export const LoginForm = () => {
         <label htmlFor="" className="text-sm font-semibold text-[#efefef]">
           Email
         </label>
+        <FormLabel name="email">Email</FormLabel>
         <div className="relative">
           <Input
             onChange={() => {}}
