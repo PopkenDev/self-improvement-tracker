@@ -1,15 +1,17 @@
 "use client";
 
-import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FormLabel } from "../ui/form-label";
+import { FormLabel } from "@/components/ui/form-label";
+import { FormItem } from "@/components/ui/form-item";
 
 export const LoginForm = () => {
   return (
     <form className="mt-8 flex w-[380px] flex-col space-y-6 p-8">
-      <div className="relative flex flex-col gap-y-2">
+      <FormItem>
         <FormLabel name="email">Email</FormLabel>
         <div className="relative">
           <Input
@@ -25,8 +27,8 @@ export const LoginForm = () => {
             className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
           />
         </div>
-      </div>
-      <div className="flex flex-col gap-y-2">
+      </FormItem>
+      <FormItem>
         <FormLabel name="password">Password</FormLabel>
         <div className="relative">
           <Input
@@ -41,7 +43,7 @@ export const LoginForm = () => {
             className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
           />
         </div>
-      </div>
+      </FormItem>
       <Button type="button" className="bg-emerald-600 text-white">
         Login
       </Button>
