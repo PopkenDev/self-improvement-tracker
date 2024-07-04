@@ -14,6 +14,7 @@ This web application is designed for individuals striving to enhance their menta
 
 - Frontend: React.js/Next.js for a dynamic and responsive user interface.
 - Backend: Next.js for robust server-side operations.
+- Icons: Fontawesome 6.5.2
 - Database: NeonDB for efficient data storage and retrieval.
 - Authentication: NextAuth for secure user authentication.
 - Hosting: Deployed on Vercel for reliable access and scalability.
