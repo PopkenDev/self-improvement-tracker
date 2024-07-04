@@ -18,16 +18,9 @@ export const Button = ({
     <button
       type={type}
       disabled={disabled}
-      className={`${className} rounded-md py-2 font-semibold hover:opacity-80 transition`}
+      className={`${className} rounded-md py-2 font-semibold transition hover:opacity-80`}
     >
       {children}
     </button>
   );
 };
-
-// 1) Variant
-// 2) Type
-// 3) onClick
-// 4) disabled
-// 5) className
-// 6) children
