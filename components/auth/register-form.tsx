@@ -109,13 +109,15 @@ export const RegisterForm = () => {
           <FormError>{errors.repeatPassword.message}</FormError>
         )}
       </FormItem>
-      <Button
-        disabled={isPending}
-        type="submit"
-        className="bg-emerald-600 text-white"
-      >
-        Register
-      </Button>
+      <div className="pt-6">
+        <Button
+          disabled={isPending}
+          type="submit"
+          className="w-full bg-emerald-600 text-white"
+        >
+          Create an account
+        </Button>
+      </div>
     </form>
   );
 };
