@@ -30,7 +30,7 @@ const RegisterSchema: ZodType<FormData> = z
       .min(6, "Password must contain atleast 6 characters"),
   })
   .refine((data) => data.password === data.repeatPassword, {
-    message: "Passwords do not match",
+    message: "Passwords do not match!",
     path: ["repeatPassword"],
   });
 
@@ -125,7 +125,6 @@ export const RegisterForm = () => {
       <Button type="submit" className="bg-emerald-600 text-white">
         Register
       </Button>
-      <input type="submit" value="Register" className="text-white" />
     </form>
   );
 };
