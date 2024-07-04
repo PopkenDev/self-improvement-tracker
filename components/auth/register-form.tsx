@@ -29,7 +29,7 @@ export const RegisterForm = () => {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="mt-8 flex w-[380px] flex-col space-y-6 p-8"
+      className="mt-8 flex w-[450px] flex-col space-y-6 p-8"
     >
       <FormItem>
         <FormLabel name="name">Name</FormLabel>

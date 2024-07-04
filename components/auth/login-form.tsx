@@ -10,7 +10,7 @@ import { FormItem } from "@/components/ui/form-item";
 
 export const LoginForm = () => {
   return (
-    <form className="mt-8 flex w-[380px] flex-col space-y-6 p-8">
+    <form className="mt-8 flex w-[450px] flex-col space-y-8 p-8">
       <FormItem>
         <FormLabel name="email">Email</FormLabel>
         <div className="relative">
