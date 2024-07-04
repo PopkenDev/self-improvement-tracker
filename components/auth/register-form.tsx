@@ -12,6 +12,8 @@ import { FormItem } from "@/components/ui/form-item";
 // import { RegisterSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormError } from "../ui/form-error";
+import { useTransition } from "react";
+import { Register } from "@/actions/register";
 
 type FormData = {
   name: string;
@@ -20,7 +22,7 @@ type FormData = {
   repeatPassword: string;
 };
 
-const RegisterSchema: ZodType<FormData> = z
+export const RegisterSchema: ZodType<FormData> = z
   .object({
     name: z.string().min(1, "Please enter your name"),
     email: z.string().email({ message: "Please enter a valid email" }),
@@ -35,6 +37,7 @@ const RegisterSchema: ZodType<FormData> = z
   });
 
 export const RegisterForm = () => {
+  const [isPening, startTransition] = useTransition();
   const {
     register,
     handleSubmit,
@@ -44,7 +47,9 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log("IT WORKED: ", data);
+    startTransition(() => {
+      Register(data);
+    });
   };
   return (
     <form
