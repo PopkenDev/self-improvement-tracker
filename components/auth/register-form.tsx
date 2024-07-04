@@ -1,7 +1,8 @@
 "use client";
 
-import { z, ZodType } from "zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,35 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormLabel } from "@/components/ui/form-label";
 import { FormItem } from "@/components/ui/form-item";
-// import { RegisterSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormError } from "../ui/form-error";
-import { useTransition } from "react";
+import { FormError } from "@/components/ui/form-error";
 import { Register } from "@/actions/register";
-
-type FormData = {
-  name: string;
-  email: string;
-  password: string;
-  repeatPassword: string;
-};
-
-export const RegisterSchema: ZodType<FormData> = z
-  .object({
-    name: z.string().min(1, "Please enter your name"),
-    email: z.string().email({ message: "Please enter a valid email" }),
-    password: z.string().min(6, "Password must contain atleast 6 characters"),
-    repeatPassword: z
-      .string()
-      .min(6, "Password must contain atleast 6 characters"),
-  })
-  .refine((data) => data.password === data.repeatPassword, {
-    message: "Passwords do not match!",
-    path: ["repeatPassword"],
-  });
+import { FormData, RegisterSchema } from "@/schemas";
 
 export const RegisterForm = () => {
-  const [isPening, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const {
     register,
     handleSubmit,
@@ -60,6 +38,7 @@ export const RegisterForm = () => {
         <FormLabel name="name">Name</FormLabel>
         <div className="relative">
           <Input
+            disabled={isPending}
             {...register("name")}
             type="text"
             name="name"
@@ -77,6 +56,7 @@ export const RegisterForm = () => {
         <FormLabel name="email">Email</FormLabel>
         <div className="relative">
           <Input
+            disabled={isPending}
             {...register("email")}
             type="email"
             name="email"
@@ -95,6 +75,7 @@ export const RegisterForm = () => {
         <FormLabel name="password">Password</FormLabel>
         <div className="relative">
           <Input
+            disabled={isPending}
             {...register("password")}
             type="password"
             name="password"
@@ -112,6 +93,7 @@ export const RegisterForm = () => {
         <FormLabel name="repeatPassword">Repeat password</FormLabel>
         <div className="relative">
           <Input
+            disabled={isPending}
             {...register("repeatPassword")}
             type="password"
             name="repeatPassword"
@@ -127,7 +109,11 @@ export const RegisterForm = () => {
           <FormError>{errors.repeatPassword.message}</FormError>
         )}
       </FormItem>
-      <Button type="submit" className="bg-emerald-600 text-white">
+      <Button
+        disabled={isPending}
+        type="submit"
+        className="bg-emerald-600 text-white"
+      >
         Register
       </Button>
     </form>
