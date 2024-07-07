@@ -1,28 +1,25 @@
 "use client";
 
-import { ZodType, z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
+import { Login } from "@/actions/login";
+import { FormData, LoginSchema } from "@/schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormLabel } from "@/components/ui/form-label";
 import { FormItem } from "@/components/ui/form-item";
+import { FormError } from "@/components/auth/form-error";
+import { FormSucces } from "@/components/auth/form-succes";
 import { FormErrorMsg } from "@/components/ui/form-error";
 
-type FormData = {
-  email: string;
-  password: string;
-};
-
-const LoginSchema: ZodType<FormData> = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string().min(8, "Password must be at least 8 characters long"),
-});
-
 export const LoginForm = () => {
+  const [succesMessage, setSuccesMessage] = useState<string | undefined>("");
+  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
+  const [isPending, startTransition] = useTransition();
   const {
     register,
     handleSubmit,
@@ -31,8 +28,12 @@ export const LoginForm = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("IT WORKED: ", data);
+  const onSubmit = (values: FormData) => {
+    startTransition(() => {
+      Login(values).then((data) => {
+        setErrorMessage(data?.error);
+      });
+    });
   };
   return (
     <form
@@ -43,14 +44,16 @@ export const LoginForm = () => {
         <FormLabel name="email">Email</FormLabel>
         <div className="relative">
           <Input
+            disabled={isPending}
             {...register("email")}
             type="email"
             name="email"
             placeholder="john.doe@example.com"
             variant="authentication"
           />
+
           <FontAwesomeIcon
-            icon={faUser}
+            icon={faEnvelope}
             className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
           />
         </div>
@@ -60,6 +63,7 @@ export const LoginForm = () => {
         <FormLabel name="password">Password</FormLabel>
         <div className="relative">
           <Input
+            disabled={isPending}
             {...register("password")}
             type="password"
             name="password"
@@ -75,7 +79,14 @@ export const LoginForm = () => {
           <FormErrorMsg>{errors.password.message}</FormErrorMsg>
         )}
       </FormItem>
-      <Button type="submit" variant="default">
+      {succesMessage && <FormSucces message={succesMessage} />}
+      {errorMessage && <FormError message={errorMessage} />}
+      <Button
+        disabled={isPending}
+        variant="default"
+        type="submit"
+        className="w-full"
+      >
         Login
       </Button>
     </form>
