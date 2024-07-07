@@ -14,14 +14,11 @@ import { FormError } from "@/components/auth/form-error";
 import { Register } from "@/actions/register";
 import { FormData, RegisterSchema } from "@/schemas";
 import { FormSucces } from "@/components/auth/form-succes";
+import { FormErrorMsg } from "@/components/ui/form-error";
 
 export const RegisterForm = () => {
-  const [succesMessage, setSuccesMessage] = useState<string | undefined>(
-    "Account created",
-  );
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    "Something went wrong",
-  );
+  const [succesMessage, setSuccesMessage] = useState<string | undefined>("");
+  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const {
     register,
@@ -35,6 +32,7 @@ export const RegisterForm = () => {
     startTransition(() => {
       Register(data).then((data) => {
         setSuccesMessage(data.success);
+        setErrorMessage(data.error);
       });
     });
   };
@@ -60,7 +58,7 @@ export const RegisterForm = () => {
               className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
             />
           </div>
-          {errors.name && <FormError>{errors.name.message}</FormError>}
+          {errors.name && <FormErrorMsg>{errors.name.message}</FormErrorMsg>}
         </FormItem>
         <FormItem>
           <FormLabel name="email">Email</FormLabel>
@@ -79,7 +77,7 @@ export const RegisterForm = () => {
               className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
             />
           </div>
-          {errors.email && <FormError>{errors.email.message}</FormError>}
+          {errors.email && <FormErrorMsg>{errors.email.message}</FormErrorMsg>}
         </FormItem>
         <FormItem>
           <FormLabel name="password">Password</FormLabel>
@@ -97,7 +95,9 @@ export const RegisterForm = () => {
               className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
             />
           </div>
-          {errors.password && <FormError>{errors.password.message}</FormError>}
+          {errors.password && (
+            <FormErrorMsg>{errors.password.message}</FormErrorMsg>
+          )}
         </FormItem>
         <FormItem>
           <FormLabel name="repeatPassword">Repeat password</FormLabel>
@@ -116,7 +116,7 @@ export const RegisterForm = () => {
             />
           </div>
           {errors.repeatPassword && (
-            <FormError>{errors.repeatPassword.message}</FormError>
+            <FormErrorMsg>{errors.repeatPassword.message}</FormErrorMsg>
           )}
         </FormItem>
         {succesMessage && <FormSucces message={succesMessage} />}
