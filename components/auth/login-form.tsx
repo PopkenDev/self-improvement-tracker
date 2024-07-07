@@ -1,5 +1,8 @@
 "use client";
 
+import { ZodType, z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,10 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormLabel } from "@/components/ui/form-label";
 import { FormItem } from "@/components/ui/form-item";
-import { ZodType, z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormError } from "../ui/form-error";
+import { FormErrorMsg } from "@/components/ui/form-error";
 
 type FormData = {
   email: string;
@@ -54,7 +54,7 @@ export const LoginForm = () => {
             className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
           />
         </div>
-        {errors.email && <FormError>{errors.email.message}</FormError>}
+        {errors.email && <FormErrorMsg>{errors.email.message}</FormErrorMsg>}
       </FormItem>
       <FormItem>
         <FormLabel name="password">Password</FormLabel>
@@ -71,7 +71,9 @@ export const LoginForm = () => {
             className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-emerald-400"
           />
         </div>
-        {errors.password && <FormError>{errors.password.message}</FormError>}
+        {errors.password && (
+          <FormErrorMsg>{errors.password.message}</FormErrorMsg>
+        )}
       </FormItem>
       <Button type="submit" variant="default">
         Login
