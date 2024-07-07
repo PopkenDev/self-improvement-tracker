@@ -37,7 +37,7 @@ export const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-8 flex w-[450px] flex-col space-y-8 p-8"
+      className="mt-4 flex w-screen flex-col space-y-8 p-8 sm:w-[450px]"
     >
       <FormItem>
         <FormLabel name="email">Email</FormLabel>
@@ -73,7 +73,7 @@ export const LoginForm = () => {
         </div>
         {errors.password && <FormError>{errors.password.message}</FormError>}
       </FormItem>
-      <Button type="submit" className="bg-emerald-600 text-white">
+      <Button type="submit" variant="default">
         Login
       </Button>
     </form>

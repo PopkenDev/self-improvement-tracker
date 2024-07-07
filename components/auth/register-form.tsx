@@ -32,7 +32,7 @@ export const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-8 flex w-[450px] flex-col space-y-6 p-8"
+      className="mt-4 flex w-screen flex-col space-y-8 p-8 sm:w-[450px]"
     >
       <FormItem>
         <FormLabel name="name">Name</FormLabel>
@@ -109,15 +109,15 @@ export const RegisterForm = () => {
           <FormError>{errors.repeatPassword.message}</FormError>
         )}
       </FormItem>
-      <div className="pt-6">
-        <Button
-          disabled={isPending}
-          type="submit"
-          className="w-full bg-emerald-600 text-white"
-        >
-          Create an account
-        </Button>
-      </div>
+
+      <Button
+        disabled={isPending}
+        variant="default"
+        type="submit"
+        className="w-full"
+      >
+        Create an account
+      </Button>
     </form>
   );
 };

@@ -14,7 +14,7 @@ const font = Poppins({
 
 const LoginPage = () => {
   return (
-    <main className="h-full flex flex-col justify-center items-center">
+    <main className="flex h-full flex-col items-center justify-center">
       <CardWrapper
         label="Welcome back🚀"
         subText="Login to your account"
