@@ -22,4 +22,4 @@ export const apiAuthPrefix = "/api/auth";
  * The default redirect path after a user logs in.
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/nutrition-tracker";
+export const DEFAULT_LOGIN_REDIRECT = "/app/nutrition-tracker";
