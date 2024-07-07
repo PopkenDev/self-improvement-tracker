@@ -1,10 +1,10 @@
 import { z, ZodType } from "zod";
 
 export type FormData = {
-  name: string;
+  name?: string;
   email: string;
   password: string;
-  repeatPassword: string;
+  repeatPassword?: string;
 };
 
 export const RegisterSchema: ZodType<FormData> = z
@@ -20,3 +20,8 @@ export const RegisterSchema: ZodType<FormData> = z
     message: "Passwords do not match!",
     path: ["repeatPassword"],
   });
+
+export const LoginSchema: ZodType<FormData> = z.object({
+  email: z.string().email({ message: "Please enter a valid email" }),
+  password: z.string().min(6, "Password must contain atleast 6 characters"),
+});
