@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 
 import { NutritionTrackerClient } from "./components/nutrition-tracker-client";
 
@@ -10,6 +10,17 @@ const NutritionTrackerPage = async () => {
         <p className="text-white">{JSON.stringify(session)}</p>
       </div>
       <NutritionTrackerClient />
+      <form
+        action={async () => {
+          "use server";
+
+          await signOut();
+        }}
+      >
+        <button type="submit" className="text-white">
+          Sign Out
+        </button>
+      </form>
     </main>
   );
 };
