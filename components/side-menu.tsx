@@ -60,13 +60,15 @@ export const SideMenu = () => {
   ];
   return (
     <>
-      <button type="button" onClick={() => setIsOpen(true)}>
+      <button title="open menu" type="button" onClick={() => setIsOpen(true)}>
         <FontAwesomeIcon icon={faBars} className="h-6 w-6 text-gray-500" />
       </button>
       <aside
         className={`absolute left-0 top-0 z-50 flex h-screen w-64 -translate-x-full flex-col overflow-hidden border-r border-white/5 bg-[#121212] py-8 transition duration-300 ease-in-out ${isOpen ? "translate-x-0" : ""}`}
       >
         <button
+          title="close menu"
+          type="button"
           onClick={() => setIsOpen(false)}
           className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-white/10"
         >
