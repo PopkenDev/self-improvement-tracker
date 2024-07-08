@@ -14,13 +14,14 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String          @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String          @unique
   emailVerified DateTime?
   image         String?
   password      String?
   accounts      Account[]
+  nutritionGoal NutritionGoal[]
 }
 
 model Account {
@@ -40,4 +41,19 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model NutritionGoal {
+  id          String @id @default(cuid())
+  userId      String
+  calories    Int
+  protein     Int
+  carbs       Int
+  fat         Int
+  fiber       Int
+  sugar       Int
+  sodium      Int
+  cholesterol Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
