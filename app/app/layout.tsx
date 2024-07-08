@@ -1,18 +1,27 @@
-import { Poppins } from "next/font/google";
+import { Hind_Madurai } from "next/font/google";
 
 import { MainNav } from "@/components/main-nav";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 
-const font = Poppins({
+const font = Hind_Madurai({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
+interface AppLayoutProps {
+  children: React.ReactNode;
+}
+
+const AppLayout = async ({ children }: AppLayoutProps) => {
+  const session = await auth();
   return (
-    <div className={font.className}>
-      <MainNav />
-      {children}
-    </div>
+    <SessionProvider session={session}>
+      <div className={font.className}>
+        <MainNav />
+        {children}
+      </div>
+    </SessionProvider>
   );
 };
 
