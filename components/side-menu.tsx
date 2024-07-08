@@ -20,7 +20,7 @@ import {
   RiDonutChartFill,
   RiArrowDropRightLine,
 } from "@remixicon/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export const SideMenu = () => {
   const session = useSession();
@@ -126,7 +126,11 @@ export const SideMenu = () => {
               </div>
               <RiArrowDropRightLine className="h-5 w-5 text-gray-500" />
             </Link>
-            <button className="flex w-full items-center justify-between border-b border-white/5 py-3 text-gray-500">
+
+            <button
+              onClick={() => signOut()}
+              className="flex w-full items-center justify-between border-b border-white/5 py-3 text-gray-500"
+            >
               <div className="flex items-center gap-x-2">
                 <RiLogoutBoxRLine className="h-5 w-5 text-gray-500" />
                 Log out
