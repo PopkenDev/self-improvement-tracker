@@ -49,7 +49,7 @@ export const SideMenu = () => {
     },
     {
       label: "Goals",
-      href: "/app",
+      href: "/app/goals",
       icon: <RiFocus2Line className="h-5 w-5 text-gray-500" />,
     },
     {
@@ -101,6 +101,7 @@ export const SideMenu = () => {
           <nav className="flex flex-col">
             {navItems.map((item) => (
               <Link
+                onClick={() => setIsOpen(false)}
                 href={item.href}
                 key={item.label}
                 className="flex items-center justify-between border-b border-white/5 py-3 text-gray-500"
