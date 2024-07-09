@@ -30,4 +30,11 @@
       0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
       0 3.5px 6px hsla(0, 0%, 0%, 0.09);
   }
+
+  .card {
+    background-size: cover;
+    background-position: 50% 30%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)),
+      url("/img-1.jpg");
+  }
 }

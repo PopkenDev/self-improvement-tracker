@@ -10,7 +10,7 @@ interface ModalProps {
 
 export const Modal = ({ children, onClose }: ModalProps) => {
   return (
-    <div className="light-shadow absolute left-1/2 top-1/2 h-[calc(100vh-32px)] w-[calc(100vw-32px)] -translate-x-1/2 -translate-y-1/2 rounded-md bg-[#242424]">
+    <div className="light-shadow absolute left-1/2 top-1/2 h-[calc(100vh-32px)] w-[calc(100vw-32px)] -translate-x-1/2 -translate-y-1/2 overflow-y-scroll rounded-md bg-[#242424]">
       <FontAwesomeIcon
         onClick={onClose}
         icon={faClose}

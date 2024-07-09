@@ -63,8 +63,8 @@ export const SideMenu = () => {
       <button title="open menu" type="button" onClick={() => setIsOpen(true)}>
         <FontAwesomeIcon icon={faBars} className="h-6 w-6 text-gray-500" />
       </button>
-      <aside
-        className={`absolute bottom-0 left-0 z-50 flex h-screen w-screen flex-col overflow-hidden rounded-t-md border-r border-white/5 bg-[#121212] py-8 transition duration-300 ease-in-out ${isOpen ? "translate-y-0" : "translate-y-full"}`}
+      <div
+        className={`absolute bottom-0 left-0 z-50 h-screen w-screen flex-col overflow-hidden rounded-t-md border-r border-white/5 bg-[#121212] py-8 transition duration-300 ease-in-out ${isOpen ? "flex translate-y-0" : "hidden translate-y-full"}`}
       >
         <button
           title="close menu"
@@ -140,7 +140,7 @@ export const SideMenu = () => {
             </button>
           </nav>
         </div>
-      </aside>
+      </div>
     </>
   );
 };
